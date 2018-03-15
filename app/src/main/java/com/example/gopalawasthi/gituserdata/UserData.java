@@ -80,6 +80,10 @@ public class UserData extends AppCompatActivity {
     public void Followingclick (View view){
 
         Toast.makeText(this,"followingclicked",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,FollowingList.class);
+        intent.putExtra(FOLLOWERS,urlstring);
+        startActivity(intent);
+
     }
 
 }

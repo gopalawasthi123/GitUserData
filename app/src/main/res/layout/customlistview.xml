@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="92dp"
+        android:layout_width="122dp"
+        android:layout_height="122dp"
         android:layout_marginBottom="8dp"
 
         android:layout_marginTop="8dp"
@@ -56,11 +56,11 @@
         android:layout_height="47dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:onClick="Followingclick"
-        android:text="following"
+        android:text="followers"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -70,11 +70,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:onClick="Followersclick"
-        android:text="followers"
+        android:text="following"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/following"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -88,7 +88,7 @@
         android:gravity="center_vertical|center"
         android:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/followingcount"
-        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -96,7 +96,7 @@
         android:id="@+id/followingcount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal|center"
         android:text="TextView"

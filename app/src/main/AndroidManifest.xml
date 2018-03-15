@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserData" />
-        <activity android:name=".FollowersList"></activity>
+        <activity android:name=".FollowersList" />
+        <activity android:name=".FollowingList"></activity>
     </application>
 
 </manifest>
