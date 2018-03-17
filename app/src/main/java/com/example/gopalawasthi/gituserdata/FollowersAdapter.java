@@ -58,7 +58,7 @@ public class FollowersAdapter extends BaseAdapter {
         Followers myfollowers =(Followers)getItem(position);
         String url = myfollowers.getImage();
         holder.followername.setText(myfollowers.getName());
-        Picasso.get().load(url).into(holder.imageView);
+        Picasso.get().load(url).centerCrop().resize(100,100).into(holder.imageView);
         return view1;
     }
 

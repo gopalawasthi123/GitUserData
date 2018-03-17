@@ -4,12 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +52,7 @@ public class customAdapter extends BaseAdapter {
             holder.imageView = view1.findViewById(R.id.imageView);
             holder.username = view1.findViewById(R.id.username);
             holder.userlocation = view1.findViewById(R.id.location);
-            holder.followersCount = view1.findViewById(R.id.followerscount);
+            holder.followersCount = view1.findViewById(R.id.followercount);
             holder.followingCount = view1.findViewById(R.id.followingcount);
             view1.setTag(holder);
         }
