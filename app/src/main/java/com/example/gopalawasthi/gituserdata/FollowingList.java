@@ -10,6 +10,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class FollowingList extends AppCompatActivity {
 
     ListView listView ;
@@ -27,32 +33,56 @@ public class FollowingList extends AppCompatActivity {
         listView.setAdapter(followersAdapter);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra(UserData.FOLLOWERS);
-        String url = name + "/" + "following";
+        String name = intent.getStringExtra(MainActivity.USER_NAME);
+
 
         progressBar.setVisibility(View.VISIBLE);
-        FollowersAsynchronous followersAsynchronous = new FollowersAsynchronous(new FollowersAsynchronous.followersinterface() {
+        listView.setVisibility(View.GONE);
+//        FollowersAsynchronous followersAsynchronous = new FollowersAsynchronous(new FollowersAsynchronous.followersinterface() {
+//            @Override
+//            public void onfollowerscomplete(ArrayList<Followers> followersArrayList) {
+//                if(followersArrayList!=null){
+//                    for (int i =0 ;i <followersArrayList.size() ;i++){
+//                        Followers followers = followersArrayList.get(i);
+//                        String name = followers.getName();
+//                        String image = followers.getImage();
+//                        Followers followers1  = new Followers(name , image);
+//                        arrayList.add(followers1);
+//
+//                    }
+//                    followersAdapter.notifyDataSetChanged();
+//
+//                } else
+//                    Toast.makeText(FollowingList.this,"tryagain!",Toast.LENGTH_SHORT).show();
+//                listView.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
+//            }
+//        });
+//        followersAsynchronous.execute(url);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        MyInterface myInterface = retrofit.create(MyInterface.class);
+        final Call<ArrayList<Followers>> arrayListCall = myInterface.getfollowing(name);
+        arrayListCall.enqueue(new Callback<ArrayList<Followers>>() {
             @Override
-            public void onfollowerscomplete(ArrayList<Followers> followersArrayList) {
-                if(followersArrayList!=null){
-                    for (int i =0 ;i <followersArrayList.size() ;i++){
-                        Followers followers = followersArrayList.get(i);
-                        String name = followers.getName();
-                        String image = followers.getImage();
-                        Followers followers1  = new Followers(name , image);
-                        arrayList.add(followers1);
-
+            public void onResponse(Call<ArrayList<Followers>> call, Response<ArrayList<Followers>> response) {
+                if(response!=null){
+                    for(int i =0 ; i< response.body().size() ; i++){
+                        arrayList.add(response.body().get(i));
                     }
                     followersAdapter.notifyDataSetChanged();
+                    listView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
 
-                } else
-                    Toast.makeText(FollowingList.this,"tryagain!",Toast.LENGTH_SHORT).show();
-                listView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+            @Override
+            public void onFailure(Call<ArrayList<Followers>> call, Throwable t) {
+                Toast.makeText(FollowingList.this, t+ "", Toast.LENGTH_SHORT).show();
             }
         });
-        followersAsynchronous.execute(url);
-
 
 
     }

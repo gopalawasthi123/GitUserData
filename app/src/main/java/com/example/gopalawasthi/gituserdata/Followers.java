@@ -1,16 +1,19 @@
 package com.example.gopalawasthi.gituserdata;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Gopal Awasthi on 15-03-2018.
  */
 
 public class Followers {
-    String name;
-    String image;
+    @SerializedName("login")
+   private String name;
+   private String avatar_url;
 
-    public Followers(String name, String image) {
+    public Followers(String name, String avatar_url) {
         this.name = name;
-        this.image = image;
+        this.avatar_url = avatar_url;
     }
 
     public String getName() {
@@ -21,11 +24,11 @@ public class Followers {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getAvatar_url() {
+        return avatar_url;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 }

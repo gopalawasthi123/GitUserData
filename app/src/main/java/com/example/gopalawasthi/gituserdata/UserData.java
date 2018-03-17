@@ -25,9 +25,11 @@ public class UserData extends AppCompatActivity {
     Button followersbutton;
     Button followingbutton;
     public static final String FOLLOWERS  =" followers";
+    public static final String FOLLOWING ="following";
     String urlstring;
      ArrayList<UserResponse> arrayList ;
 RetrofitAdapter retrofitAdapter;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ RetrofitAdapter retrofitAdapter;
         retrofitAdapter =  new RetrofitAdapter(arrayList,this);
         listView.setAdapter(retrofitAdapter);
         Intent intent = getIntent();
-       final String username =  intent.getStringExtra(MainActivity.USER_NAME);
+         username =  intent.getStringExtra(MainActivity.USER_NAME);
 
 
 //         urlstring = "https://api.github.com/users/"+ username;
@@ -78,11 +80,11 @@ RetrofitAdapter retrofitAdapter;
         listView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("https://api.github.com/users/")
+                            .baseUrl("https://api.github.com/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
         MyInterface myInterface = retrofit.create( MyInterface.class);
-        Call<UserResponse> call = myInterface.getUserResponse();
+        Call<UserResponse> call = myInterface.getUserResponse(username);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
@@ -95,7 +97,7 @@ RetrofitAdapter retrofitAdapter;
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Toast.makeText(UserData.this, "tryagain!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserData.this, t+"", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,9 +107,9 @@ RetrofitAdapter retrofitAdapter;
     public void Followersclick (View view){
 
     Toast.makeText(this,"followersclicked", Toast.LENGTH_SHORT).show();
-//    Intent intent = new Intent(this,FollowersList.class);
-//    intent.putExtra(FOLLOWERS,urlstring);
-//    startActivity(intent);
+    Intent intent = new Intent(this,FollowersList.class);
+    intent.putExtra(MainActivity.USER_NAME,username);
+    startActivity(intent);
 
 
     }
@@ -116,9 +118,9 @@ RetrofitAdapter retrofitAdapter;
     public void Followingclick (View view){
 
         Toast.makeText(this,"followingclicked",Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this,FollowingList.class);
-//        intent.putExtra(FOLLOWERS,urlstring);
-//        startActivity(intent);
+        Intent intent = new Intent(this,FollowingList.class);
+        intent.putExtra(MainActivity.USER_NAME,username);
+        startActivity(intent);
 
     }
 
