@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.gopalawasthi.gituserdata.FollowersList">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/followerslist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 <ProgressBar
     android:id="@+id/progressbar"
