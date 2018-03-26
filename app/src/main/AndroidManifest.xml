@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".UserData" />
         <activity android:name=".FollowersList" />
-        <activity android:name=".FollowingList"></activity>
+        <activity android:name=".FollowingList" />
+        <activity android:name=".Potraitdetail"></activity>
     </application>
 
 </manifest>
